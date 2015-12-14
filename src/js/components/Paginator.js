@@ -2,10 +2,26 @@ import React, { Component } from 'react';
 import { fetchRatings } from 'actions/movies';
 
 class Paginator extends Component {
+  constructor() {
+    super();
+    this.state = { isFetching: true };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ isFetching: nextProps.isFetching });
+  }
+
   render() {
-    return (
-      <button onClick={this.props.loadMore}>Load more</button>
-    );
+    const { isFetching } = this.state.isFetching;
+    let button;
+
+    if(this.state.isFetching) {
+      button = <span>Loading...</span>;
+    } else {
+      button = <button onClick={this.props.loadMore}>Load more</button>
+    }
+
+    return button;
   }
 }
 

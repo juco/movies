@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchRatings } from 'actions/movies';
+import { resetRatings, nextRatings } from 'actions/movies';
 import MovieList from 'components/MovieList';
 import Paginator from 'components/paginator';
 
@@ -8,7 +8,7 @@ class HomePage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     this.loadMore = this.loadMore.bind(this);
-    dispatch(fetchRatings());
+    dispatch(resetRatings());
   }
 
   componentWillReceiveProps(nextProps) {
@@ -17,7 +17,7 @@ class HomePage extends Component {
 
   loadMore() {
     const { dispatch, start } = this.props;
-    dispatch(fetchRatings(start));
+    dispatch(nextRatings(start));
   }
 
   render() {
@@ -25,7 +25,7 @@ class HomePage extends Component {
       <div>
         <h1>Home</h1>
         <MovieList movies={this.props.items} />
-        <Paginator loadMore={this.loadMore} />
+        <Paginator loadMore={this.loadMore} isFetching={this.props.isFetching} />
       </div>
     );
   }
