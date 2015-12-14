@@ -14,12 +14,12 @@ function receivedMovies(movies) {
   };
 }
 
-export function fetchRatings() {
+export function fetchRatings(start = 0) {
   return (dispatch, getState) => {
 
     dispatch(requestMovies());
 
-    return fetch(`${API_PATH}/ratings`)
+    return fetch(`${API_PATH}/ratings?start=${start}`)
       .then(res => res.json())
       .then(json => dispatch(receivedMovies(json)));
   };

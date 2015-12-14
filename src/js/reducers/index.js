@@ -3,6 +3,7 @@ import { REQUEST_RATINGS, RECEIVED_RATINGS } from 'constants';
 
 const initialState = {
   isFetching: false,
+  start: 0,
   items: [
     {
       id: 1,
@@ -25,7 +26,8 @@ function movies(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        items: action.items
+        start: state.start + 50,
+        items: [...state.items, ...action.items]
       };
     default:
       return state;
