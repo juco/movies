@@ -8,12 +8,12 @@ module.exports = {
   entry: path.join(srcPath, 'js', 'app.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: "bundle.js"
+    filename: 'bundle.js'
   },
   resolve: {
     root: srcPath,
     extensions: ['', '.js'],
-    modulesDirectories: ['node_modules', 'js', 'styles']
+    modulesDirectories: ['node_modules', 'js']
   },
   module: {
     loaders: [
@@ -25,7 +25,13 @@ module.exports = {
           presets: ['react', 'es2015', 'stage-2']
         }
       },
-      { test: /\.css$/, loader: "style!css" }
+      {
+        test: /\.scss/,
+        loaders: ['style', 'css', 'sass'],
+        sassLoader: {
+          incudePaths: [path.join(srcPath, 'styles')]
+        }
+      }
     ]
   },
   devtool: 'eval-cheap-module-source-map',

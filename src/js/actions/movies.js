@@ -26,6 +26,10 @@ export function resetRatings() {
 
 export function nextRatings(start = 0) {
   return (dispatch, getState) => {
+    if(getState().movies.isFetching) {
+      return Promise.resolve();
+    }
+
     dispatch(requestMovies());
 
     fetchRatings(start)

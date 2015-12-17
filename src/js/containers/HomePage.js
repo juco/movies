@@ -24,14 +24,14 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Home</h1>
-        <MovieList movies={this.props.items} />
+        <MovieList movies={this.props.items} loadMore={this.loadMore} />
         <Paginator loadMore={this.loadMore} isFetching={this.props.isFetching} />
       </div>
     );
   }
 }
 
-function foobar(state) {
+function mapStateToProps(state) {
   const { movies } = state;
   const {
     isFetching,
@@ -50,11 +50,5 @@ function foobar(state) {
   }
 }
 
-export default connect(foobar)(HomePage);
-
-
-//export default connect(
-  //mapStateToProps,
-  //{ fetchRatings },
-//)(HomePage);
+export default connect(mapStateToProps)(HomePage);
 
