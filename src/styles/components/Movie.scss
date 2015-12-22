@@ -1,6 +1,9 @@
 @import '~styles/variables/sizing';
 
 .movie {
-  border: 1px solid;
   margin: $size-base;
+
+  .movie-image {
+    border-radius: 5px;
+  }
 }

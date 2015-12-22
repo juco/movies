@@ -6,7 +6,7 @@ class Movie extends Component {
   render() {
     return (
       <li className="movie">
-        <img src={this.props.cover} />
+        <img className="movie-image" src={this.props.cover} />
       </li>
     );
   }

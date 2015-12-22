@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { resetRatings, nextRatings } from 'actions/movies';
+import Header from 'components/Header';
 import MovieList from 'components/MovieList';
-import Paginator from 'components/paginator';
+import Paginator from 'components/Paginator';
 
 class HomePage extends Component {
   componentDidMount() {
@@ -23,7 +24,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h1>Home</h1>
+        <Header text="Home" />
         <MovieList movies={this.props.items} loadMore={this.loadMore} />
         <Paginator loadMore={this.loadMore} isFetching={this.props.isFetching} />
       </div>

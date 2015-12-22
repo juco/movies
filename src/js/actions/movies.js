@@ -10,7 +10,7 @@ function requestMovies() {
 function receivedMovies(action, movies) {
   return {
     type: action,
-    items: movies,
+    items: movies.items,
     receivedAt: new Date()
   };
 }
