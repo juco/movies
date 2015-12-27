@@ -1,10 +1,11 @@
 @import '~styles/variables/sizing';
+@import '~styles/variables/colors';
 
 .loader {
-  width: 40px;
-  height: 40px;
+  width: $size-xxl;
+  height: $size-xxl;
   margin: $size-base auto;
-  background-color: #333;
+  background-color: $color-primary;
 
   border-radius: 100%;  
   animation: sk-scaleout 1.0s infinite ease-in-out;

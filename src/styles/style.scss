@@ -1,5 +1,12 @@
 @import '~styles/variables/colors';
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
-  background-color: #0A3645;
+  background-color: $color-background;
 }

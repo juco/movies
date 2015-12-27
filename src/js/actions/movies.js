@@ -16,6 +16,7 @@ function receivedMovies(action, movies) {
 }
 
 export function resetRatings() {
+  console.log('reset');
   return (dispatch, getState) => {
     dispatch(requestMovies());
 

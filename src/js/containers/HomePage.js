@@ -10,6 +10,7 @@ class HomePage extends Component {
     const { dispatch } = this.props;
     this.loadMore = this.loadMore.bind(this);
     dispatch(resetRatings());
+    console.log('props', this.props);
   }
 
   componentWillReceiveProps(nextProps) {
