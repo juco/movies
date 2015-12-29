@@ -8,9 +8,9 @@ import Paginator from 'components/Paginator';
 class HomePage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
+
     this.loadMore = this.loadMore.bind(this);
     dispatch(resetRatings());
-    console.log('props', this.props);
   }
 
   componentWillReceiveProps(nextProps) {
