@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
-import store from 'store/store';
+import store from 'store';
 import App from 'containers/App';
 import HomePage from 'containers/HomePage';
 import AboutPage from 'containers/AboutPage';

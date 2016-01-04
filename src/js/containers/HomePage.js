@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { resetRatings, nextRatings } from 'actions/movies';
+import { resetRatings, nextRatings, changeFilter } from 'actions/movies';
 import Header from 'components/Header';
 import MovieList from 'components/MovieList';
 import Paginator from 'components/Paginator';
+import TypeFilter from 'components/TypeFilter';
 
 class HomePage extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
 
     this.loadMore = this.loadMore.bind(this);
+    this.filterChanged = this.filterChanged.bind(this);
+
     dispatch(resetRatings());
   }
 
@@ -22,10 +25,16 @@ class HomePage extends Component {
     dispatch(nextRatings(start));
   }
 
+  filterChanged(nextFilter) {
+    const { dispatch } = this.props;
+    dispatch(changeFilter(nextFilter));
+  }
+
   render() {
     return (
       <div>
         <Header text="Home" />
+        <TypeFilter filterChanged={this.filterChanged} />
         <MovieList movies={this.props.items} loadMore={this.loadMore} />
         <Paginator loadMore={this.loadMore} isFetching={this.props.isFetching} />
       </div>
