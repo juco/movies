@@ -1,6 +1,6 @@
 import url from 'url';
 import { API_PATH, REQUEST_RATINGS, RECEIVED_RATINGS,
-  RESET_RATINGS } from 'constants';
+  RESET_RATINGS, START_CHANGED, CHANGE_FILTER } from 'constants';
 
 const URL_BASE = {
   protocol: 'http',
@@ -11,7 +11,6 @@ const URL_BASE = {
     filter: undefined
   }
 };
-
 
 function requestMovies() {
   return {
@@ -27,7 +26,22 @@ function receivedMovies(action, movies) {
   };
 }
 
-function fetchRatings(start = 0, filter = null) {
+function startChanged(start) {
+  return {
+    type: START_CHANGED,
+    start
+  };
+}
+
+function filterChanged(filter) {
+  return {
+    type: CHANGE_FILTER,
+    filter
+  };
+}
+
+function fetchRatings(state) {
+  const { start, filter } = state.movies;
   return fetch(fetchUrl('ratings', start, filter))
     .then(res => res.json())
 }
@@ -48,7 +62,7 @@ export function resetRatings() {
   return(dispatch, getState) => {
     dispatch(requestMovies());
 
-    fetchRatings()
+    fetchRatings(getState())
       .then(json => dispatch(receivedMovies(RESET_RATINGS, json)));
   };
 }
@@ -60,19 +74,18 @@ export function nextRatings(start = 0) {
     }
 
     dispatch(requestMovies());
+    dispatch(startChanged(start));
+    //dispatch(fetchRatings(getState()));
 
-    fetchRatings(start)
+    fetchRatings(getState())
       .then(json => dispatch(receivedMovies(RECEIVED_RATINGS, json)));
   };
 }
 
 export function changeFilter(nextFilter = 'all') {
-  // TODO support watchlist
-  return(dispatch, getState) => {
-    dispatch(requestMovies());
-
-    fetchRatings(0, nextFilter)
-      .then(json => dispatch(receivedMovies(RESET_RATINGS, json)));
+  return (dispatch, getState) => {
+    dispatch(filterChanged(nextFilter));
+    dispatch(resetRatings());
   };
 }
 
