@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { resetRatings, nextRatings, changeFilter } from 'actions/movies';
+import { fetchRatings, nextRatings, changeFilter } from 'actions/movies';
 import Header from 'components/Header';
 import MovieList from 'components/MovieList';
 import Paginator from 'components/Paginator';
@@ -13,7 +13,7 @@ class HomePage extends Component {
     this.loadMore = this.loadMore.bind(this);
     this.filterChanged = this.filterChanged.bind(this);
 
-    dispatch(resetRatings());
+    dispatch(fetchRatings());
   }
 
   componentWillReceiveProps(nextProps) {

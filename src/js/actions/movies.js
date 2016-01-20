@@ -1,6 +1,6 @@
 import url from 'url';
-import { API_PATH, REQUEST_RATINGS, RECEIVED_RATINGS,
-  RESET_RATINGS, START_CHANGED, CHANGE_FILTER } from 'constants';
+import { API_PATH, REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER
+  , RESET_RATINGS, ADD_RATINGS } from 'constants';
 
 const URL_BASE = {
   protocol: 'http',
@@ -8,9 +8,21 @@ const URL_BASE = {
   port: 9393,
   query: {
     start: 0,
-    filter: undefined
+    filter: 'all'
   }
 };
+
+function fetchUrl(type, start = 0, filter = null) {
+  return url.format({
+    ...URL_BASE,
+    pathname: type,
+    query: {
+      ...URL_BASE.query,
+      start,
+      filter
+    }
+  });
+}
 
 function requestMovies() {
   return {
@@ -18,9 +30,15 @@ function requestMovies() {
   };
 }
 
-function receivedMovies(action, movies) {
+function resetRatings() {
   return {
-    type: action,
+    type: RESET_RATINGS
+  };
+}
+
+function addRatings(movies) {
+  return {
+    type: ADD_RATINGS,
     items: movies.items,
     receivedAt: new Date()
   };
@@ -40,52 +58,33 @@ function filterChanged(filter) {
   };
 }
 
-function fetchRatings(state) {
-  const { start, filter } = state.movies;
-  return fetch(fetchUrl('ratings', start, filter))
-    .then(res => res.json())
-}
+export function fetchRatings() {
+  return (dispatch, getState) => {
+    let { start, filter } = getState().movies;
 
-function fetchUrl(type, start = 0, filter = null) {
-  return url.format({
-    ...URL_BASE,
-    pathname: type,
-    query: {
-      ...URL_BASE.query,
-      start,
-      filter
-    }
-  });
-}
+    if(getState().movies.isFetching) return Promise.resolve();
 
-export function resetRatings() {
-  return(dispatch, getState) => {
     dispatch(requestMovies());
 
-    fetchRatings(getState())
-      .then(json => dispatch(receivedMovies(RESET_RATINGS, json)));
+    return fetch(fetchUrl('ratings', start, filter))
+      .then(res => res.json())
+      .then(json => dispatch(addRatings(json)));
   };
 }
 
-export function nextRatings(start = 0) {
-  return(dispatch, getState) => {
-    if(getState().movies.isFetching) {
-      return Promise.resolve();
-    }
+export function nextRatings() {
+  return (dispatch, getState) => {
+    let { start, perPage } = getState().movies;
 
-    dispatch(requestMovies());
-    dispatch(startChanged(start));
-    //dispatch(fetchRatings(getState()));
-
-    fetchRatings(getState())
-      .then(json => dispatch(receivedMovies(RECEIVED_RATINGS, json)));
-  };
+    dispatch(fetchRatings());
+  }
 }
 
 export function changeFilter(nextFilter = 'all') {
   return (dispatch, getState) => {
     dispatch(filterChanged(nextFilter));
     dispatch(resetRatings());
+    dispatch(fetchRatings());
   };
 }
 
