@@ -34,10 +34,5 @@ module.exports = {
       }
     ]
   },
-  devtool: 'eval-cheap-module-source-map',
-  plugins: [
-    new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
-  ]
+  devtool: 'eval-cheap-module-source-map'
 };

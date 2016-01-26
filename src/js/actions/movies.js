@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import url from 'url';
 import { API_PATH, REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER
   , RESET_RATINGS, ADD_RATINGS } from 'constants';
@@ -70,14 +71,6 @@ export function fetchRatings() {
       .then(res => res.json())
       .then(json => dispatch(addRatings(json)));
   };
-}
-
-export function nextRatings() {
-  return (dispatch, getState) => {
-    let { start, perPage } = getState().movies;
-
-    dispatch(fetchRatings());
-  }
 }
 
 export function changeFilter(nextFilter = 'all') {
