@@ -1,5 +1,5 @@
-import expect, { createSpy } from 'expect';
-import fetch from 'isomorphic-fetch';
+import expect, { createSpy, spyOn } from 'expect';
+import * as isoFetch from 'isomorphic-fetch';
 import * as action from '../../src/js/actions/movies';
 import * as constant from '../../src/js/constants';
 
@@ -11,7 +11,7 @@ describe('Movie actions', () => {
   });
 
   describe('fetchRatings()', () => {
-
+    it('dispatches a request action', () => {
       const fn = action.fetchRatings();
       const dispatch = createSpy();
       const getState = () => ({ movies: { start: 0, perPage: 10 } });
@@ -20,5 +20,14 @@ describe('Movie actions', () => {
 
       expect(dispatch)
         .toHaveBeenCalledWith({ type: constant.REQUEST_RATINGS });
+    });
+
+    it('dispatches an add action on success', () => {
+      const fs = action.fetchRatings();
+      const dispatch = createSpy();
+      const getState = () => ({ movies: { start: 0, perPage: 10 } });
+
+    });
+    const fetchSpy = spyOn(isoFetch, 'fetch');
   });
 });
