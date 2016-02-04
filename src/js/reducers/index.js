@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER
-  , RESET_RATINGS, ADD_RATINGS } from 'constants';
+import { REQUEST_RATINGS, CHANGE_FILTER, RESET_RATINGS
+  , ADD_RATINGS } from 'constants';
 
 const initialState = {
   isFetching: false,
@@ -26,11 +26,6 @@ function movies(state = initialState, action) {
         isFetching: false,
         start: action.items.length,
         items: [...state.items, ...action.items]
-      };
-    case START_CHANGED:
-      return {
-        ...state,
-        start: action.start
       };
     case CHANGE_FILTER:
       return {

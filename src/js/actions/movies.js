@@ -45,13 +45,6 @@ function addRatings(movies) {
   };
 }
 
-function startChanged(start) {
-  return {
-    type: START_CHANGED,
-    start
-  };
-}
-
 function filterChanged(filter) {
   return {
     type: CHANGE_FILTER,
