@@ -31,8 +31,15 @@ module.exports = {
         sassLoader: {
           incudePaths: [path.join(srcPath, 'styles')]
         }
+      },
+      {
+        test: /\.jpg/,
+        loader: 'file-loader'
       }
     ]
+  },
+  node: {
+    fs: 'empty'
   },
   devtool: 'eval-cheap-module-source-map'
 };
