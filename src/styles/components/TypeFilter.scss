@@ -1,0 +1,54 @@
+@import "~styles/variables/colors";
+@import "~styles/variables/sizing";
+
+.dropdown {
+  .dropdown-toggle {
+    background-color: #fff;
+    color: #333;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: $size-xs;
+    margin-bottom: 0;
+    font-weight: 300;
+    font-size: 12px;
+  }
+
+  .dropdown-toggle-icon {
+    font-size: $size-base;
+    padding-left: $size-sm;
+  }
+
+  .dropdown-menu {
+    list-style: none;
+    width: 150px;
+    background-color: #fff;
+    padding: $size-sm;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: $size-xs;
+    background-color: white;
+    margin-top: 0;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    display: none;
+
+    &.open {
+      display: block;
+    }
+
+    li {
+      :hover {
+        background-color: $color-primary;
+      }
+
+      a { 
+        display: block;
+        width: 100%;
+        line-height: 1.4;
+        text-decoration: none;
+        color: #333;
+        padding: $size-xs;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 14px;
+      }
+    }
+  }
+}

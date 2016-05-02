@@ -1,7 +1,10 @@
+@import '~styles/variables/sizing';
+
 .rating {
   text-align: center;
 
   .star {
     color: white;
+    font-size: 12px;
   }
 }

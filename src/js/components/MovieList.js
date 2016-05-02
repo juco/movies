@@ -26,7 +26,7 @@ class MovieList extends Component {
   render() {
     return (
       <ul className="movie-list">
-        {this.props.movies.map((movie) => this.renderMovie(movie))}
+        {this.props.movies.map(movie => this.renderMovie(movie))}
       </ul>
     );
   }

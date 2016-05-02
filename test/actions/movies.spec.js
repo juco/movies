@@ -1,8 +1,10 @@
 import expect, { createSpy, spyOn } from 'expect';
+import rewire from 'rewire';
 import * as isoFetch from 'isomorphic-fetch';
-import * as action from '../../src/js/actions/movies';
+//import * as action from '../../src/js/actions/movies';
 import * as constant from '../../src/js/constants';
-
+var action = rewire('../../src/js/actions/movies');
+console.log(action);
 
 describe('Movie actions', () => {
   it('export the required functions', () => {
@@ -11,6 +13,15 @@ describe('Movie actions', () => {
   });
 
   describe('fetchRatings()', () => {
+    beforeEach(() => {
+      let fetchMock = {
+        default: () => {
+          console.log('foo');
+        }
+      };
+      action.__set__('fetch', fetchMock);
+    });
+
     it('dispatches a request action', () => {
       const fn = action.fetchRatings();
       const dispatch = createSpy();
@@ -23,11 +34,14 @@ describe('Movie actions', () => {
     });
 
     it('dispatches an add action on success', () => {
-      const fs = action.fetchRatings();
+      const fn = action.fetchRatings();
       const dispatch = createSpy();
       const getState = () => ({ movies: { start: 0, perPage: 10 } });
 
+      fn(dispatch, getState);
+
+      expect(dispatch)
+        .toHaveBeenCalledWith({ type: constant.ADD_RATINGS });
     });
-    const fetchSpy = spyOn(isoFetch, 'fetch');
   });
 });

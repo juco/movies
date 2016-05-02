@@ -3,3 +3,12 @@
 .page-header {
   color: $color-primary;
 }
+
+.header {
+  min-height: 600px;
+  width: 100%;
+
+  .header-img {
+    width: 100%
+  }
+}
