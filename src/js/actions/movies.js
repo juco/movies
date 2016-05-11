@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import url from 'url';
-import { API_PATH, REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER
-  , RESET_RATINGS, ADD_RATINGS } from 'constants';
+import { API_PATH, REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER,
+  RESET_RATINGS, ADD_RATINGS } from 'constants';
 
 const URL_BASE = {
   protocol: 'http',

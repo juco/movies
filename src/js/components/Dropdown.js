@@ -1,37 +1,44 @@
 import React, { Component } from 'react';
 import classNames from 'classnames/bind';
 
-import 'styles/components/TypeFilter.scss';
+import 'styles/components/Dropdown.scss';
 
-class TypeFilter extends Component {
+class Dropdown extends Component {
+  static propTypes = {
+    values: React.PropTypes.array.isRequired,
+    defaultSelected: React.PropTypes.string
+  }
+
   constructor(props) {
-    super(props);
+    const { values, defaultSelected } = props;
+    const defDefault = { name: 'Please select', value: null };
 
-    this.toggle = this.toggle.bind(this);
-    this.itemSelected = this.itemSelected.bind(this);
+    super(props);
 
     this.state = {
       isOpen: false,
-      selected: this.props.default || 'Please select'
+      selected: values.find(v => v.value === defaultSelected) || defDefault
     };
+
+    this.toggle = this.toggle.bind(this);
+    this.itemSelected = this.itemSelected.bind(this);
   }
 
   toggle() {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  itemSelected(ev) {
-    const value = ev.target.getAttribute('data-value');
-    const text = ev.target.text;
-
-    this.props.valueChanged(value);
-    this.setState({ isOpen: false, selected: text });
+  itemSelected(selected) {
+    this.props.valueChanged(selected.value);
+    this.setState({ isOpen: false, selected });
   }
 
   renderItem(item) {
+    const clickHandler = this.itemSelected.bind(this, item);
+
     return (
       <li key={item.value}>
-        <a href="#" data-value={item.value} onClick={this.itemSelected}>
+        <a href="#" onClick={clickHandler}>
           {item.name}
         </a>
       </li>
@@ -48,7 +55,7 @@ class TypeFilter extends Component {
       <div className="dropdown">
         <button className="dropdown-toggle"
                 onClick={this.toggle}>
-          { this.state.selected }
+          {this.state.selected.name}
           <span className="dropdown-toggle-icon">
             &#9660;
           </span>
@@ -62,4 +69,4 @@ class TypeFilter extends Component {
   }
 }
 
-export default TypeFilter;
+export default Dropdown;

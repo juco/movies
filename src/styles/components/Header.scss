@@ -1,12 +1,14 @@
 @import "~styles/variables/colors";
+@import "~styles/variables/sizing";
 
 .page-header {
   color: $color-primary;
 }
 
 .header {
-  min-height: 600px;
+  /*min-height: 600px;*/
   width: 100%;
+  margin-bottom: $size-base;
 
   .header-img {
     width: 100%

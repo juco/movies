@@ -4,7 +4,7 @@ import { fetchRatings, changeFilter } from 'actions/movies';
 import Header from 'components/Header';
 import MovieList from 'components/MovieList';
 import Paginator from 'components/Paginator';
-import TypeFilter from 'components/Dropdown';
+import TypeFilter from 'components/TypeFilter';
 
 import 'styles/containers/HomePage.scss';
 
@@ -25,7 +25,7 @@ class HomePage extends Component {
 
   loadMore() {
     const { dispatch, start } = this.props;
-    dispatch(fetchRatings);
+    dispatch(fetchRatings());
   }
 
   valueChanged(nextFilter) {
@@ -38,12 +38,7 @@ class HomePage extends Component {
     return (
       <div>
         <Header text="Home" />
-        <TypeFilter valueChanged={this.valueChanged}
-          values={[
-            { name: 'All', value: 'all' },
-            { name: 'Movies', value: 'movies' },
-            { name: 'TV', value: 'tv' }
-          ]} />
+        <TypeFilter valueChanged={this.valueChanged} />
 
         <MovieList movies={this.props.items} loadMore={this.loadMore} />
         <Paginator loadMore={this.loadMore} isFetching={this.props.isFetching} />

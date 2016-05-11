@@ -24,7 +24,7 @@ function movies(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        start: action.items.length,
+        start: state.start + action.items.length,
         items: [...state.items, ...action.items]
       };
     case CHANGE_FILTER:
