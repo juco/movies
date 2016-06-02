@@ -1,10 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
 @import '~styles/variables/colors';
+@import '~styles/variables/sizing';
 
 html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: $font-weight-normal;
+  font-size: 14px;
 }
 
 body {

@@ -9,13 +9,11 @@
     border: 1px solid transparent;
     border-radius: $size-xs;
     margin-bottom: 0;
-    font-weight: 300;
-    font-size: 12px;
     min-width: 100px;
+    font-weight: $font-weight-semi-bold;
   }
 
   .dropdown-toggle-icon {
-    font-size: $size-base;
     padding-left: $size-sm;
   }
 
@@ -39,6 +37,7 @@
     li {
       :hover {
         background-color: $color-primary;
+        font-weight: $font-weight-semi-bold;
       }
 
       a { 
@@ -48,8 +47,6 @@
         text-decoration: none;
         color: #333;
         padding: $size-xs;
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 14px;
       }
     }
   }

@@ -29,7 +29,6 @@ class HomePage extends Component {
   }
 
   valueChanged(nextFilter) {
-    console.log('valueChanged', nextFilter);
     const { dispatch } = this.props;
     dispatch(changeFilter(nextFilter));
   }
