@@ -18,18 +18,15 @@ class HomePage extends Component {
     dispatch(fetchRatings());
   }
 
-  // TODO Need it?
-  componentWillReceiveProps(nextProps) {
-    const { dispatch } = this.props;
-  }
-
   loadMore() {
-    const { dispatch, start } = this.props;
+    const { dispatch } = this.props;
+
     dispatch(fetchRatings());
   }
 
   valueChanged(nextFilter) {
     const { dispatch } = this.props;
+
     dispatch(changeFilter(nextFilter));
   }
 

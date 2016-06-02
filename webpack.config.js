@@ -8,7 +8,8 @@ module.exports = {
   entry: path.join(srcPath, 'js', 'app.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   resolve: {
     root: srcPath,

@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --progress --profile --colors",
-    "watch": "./node_modules/.bin/webpack-dev-server --hot --inline --progress",
-    "test": "./node_modules/.bin/karma start karma.conf.js"
+    "build": "webpack --progress --colors",
+    "watch": "webpack-dev-server --hot --inline --progress",
+    "dist": "webpack --progress --colors -p && cp index.html dist/",
+    "test": "karma start karma.conf.js"
   },
   "author": "",
   "license": "ISC",

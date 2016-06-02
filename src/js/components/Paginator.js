@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { fetchRatings } from 'actions/movies';
 import Loader from 'components/Loader';
 
 import 'styles/components/paginator.scss';
@@ -19,7 +18,7 @@ class Paginator extends Component {
 
     return (
       <div className="paginator">
-        { this.state.isFetching ? <Loader /> : '' }
+        { isFetching ? <Loader /> : '' }
       </div>
     );
   }

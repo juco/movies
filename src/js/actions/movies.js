@@ -55,8 +55,6 @@ function filterChanged(filter) {
 
 function shouldFetchMore(state) {
   const {
-    start,
-    filter,
     total,
     isFetching,
     items
