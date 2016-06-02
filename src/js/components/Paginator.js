@@ -15,22 +15,13 @@ class Paginator extends Component {
   }
 
   render() {
-    const { isFetching } = this.state.isFetching;
-    let button;
+    const { isFetching } = this.state;
 
-    if(this.state.isFetching) {
-      button = <Loader />
-    } else {
-      button = (
-        <button
-          className='loadMore'
-          onClick={this.props.loadMore}>
-          Load more
-        </button>
-      );
-    }
-
-    return button;
+    return (
+      <div className="paginator">
+        { this.state.isFetching ? <Loader /> : '' }
+      </div>
+    );
   }
 }
 

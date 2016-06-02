@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import url from 'url';
 import { API_PATH, REQUEST_RATINGS, START_CHANGED, CHANGE_FILTER,
-  RESET_RATINGS, ADD_RATINGS } from 'constants';
+  RESET_RATINGS, ADD_RATINGS, FILTER_ALL } from 'constants';
 
 const URL_BASE = {
   protocol: 'http',
@@ -41,6 +41,7 @@ function addRatings(movies) {
   return {
     type: ADD_RATINGS,
     items: movies.items,
+    total: movies.total,
     receivedAt: new Date()
   };
 }
@@ -52,11 +53,24 @@ function filterChanged(filter) {
   };
 }
 
+function shouldFetchMore(state) {
+  const {
+    start,
+    filter,
+    total,
+    isFetching,
+    items
+  } = state.movies;
+  const noneLeft = items.length >= total;
+
+  return !(isFetching || noneLeft);
+}
+
 export function fetchRatings() {
   return (dispatch, getState) => {
-    let { start, filter } = getState().movies;
+    const { start, filter } = getState().movies;
 
-    if(getState().movies.isFetching) return Promise.resolve();
+    if(!shouldFetchMore(getState())) return Promise.resolve();
 
     dispatch(requestMovies());
 
@@ -66,7 +80,7 @@ export function fetchRatings() {
   };
 }
 
-export function changeFilter(nextFilter = 'all') {
+export function changeFilter(nextFilter = FILTER_ALL.value) {
   return (dispatch, getState) => {
     dispatch(filterChanged(nextFilter));
     dispatch(resetRatings());

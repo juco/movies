@@ -24,6 +24,7 @@ function movies(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
+        total: action.total,
         start: state.start + action.items.length,
         items: [...state.items, ...action.items]
       };
