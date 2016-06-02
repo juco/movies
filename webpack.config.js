@@ -20,10 +20,7 @@ module.exports = {
       {
         text: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015', 'stage-2']
-        }
+        loader: 'babel'
       },
       {
         test: /\.scss/,
@@ -41,5 +38,5 @@ module.exports = {
   node: {
     fs: 'empty'
   },
-  devtool: 'eval-cheap-module-source-map'
+  devtool: 'cheap-module-source-map'
 };
