@@ -1,10 +1,46 @@
+@import '~styles/variables/colors';
 @import '~styles/variables/sizing';
 
-.movie {
+.movie-item {
   margin: $size-lg;
 
-  .movie-image {
-    width: 120px;
-    border-radius: 5px;
+  .movie {
+    position: relative;
+    height: 209px;
+    width: 140px;
+    border-radius: $size-sm;
+
+    &:hover {
+      .movie-overlay {
+        display: flex;
+      }
+    }
+
+    .movie-overlay {
+      @include transparent(0.7);
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      .movie-title, .movie-rating {
+        color: $color-primary;
+        font-weight: $font-weight-semi-bold;
+        text-align: center;
+      }
+
+      .movie-rating {
+        .digit, .star {
+          font-size: $size-lg;
+        }
+
+        .star {
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
   }
 }

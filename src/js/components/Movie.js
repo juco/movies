@@ -6,10 +6,21 @@ import 'styles/components/Movie.scss';
 class Movie extends Component {
   render() {
     const rating = parseInt(this.props.rating, 10);
+    const styles = {
+      backgroundImage: `url(${this.props.cover})`
+    };
 
     return (
-      <li className="movie">
-        <img className="movie-image" src={this.props.cover} />
+      <li className="movie-item">
+        <div className="movie" style={styles}>
+          <div className="movie-overlay">
+            <p className="movie-title">{this.props.title}</p>
+            <p className="movie-rating">
+              <span className="digit">{this.props.rating}</span>
+              <span className="star">&nbsp; &#9733;</span>
+            </p>
+          </div>
+        </div>
         <Rating stars={rating} />
       </li>
     );

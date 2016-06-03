@@ -1,5 +1,7 @@
 $color-primary: #F5F5F5;
 
 $color-background: #1C1C1C;
-/*$color-background: #0B252E;*/
 
+@mixin transparent($transparency) {
+  background-color: rgba(1, 0, 0, $transparency);
+}

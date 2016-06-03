@@ -3,6 +3,8 @@ import Movie from 'components/Movie';
 
 import 'styles/components/MovieList.scss';
 
+const scrollOffset = 200;
+
 class MovieList extends Component {
   constructor(props) {
     super();
@@ -14,7 +16,12 @@ class MovieList extends Component {
   }
 
   loadMoreIfNeeded() {
-    if(window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    const {
+      innerHeight,
+      scrollY
+    } = window;
+
+    if(innerHeight + scrollY >= document.body.offsetHeight - scrollOffset) {
       this.props.loadMore();
     }
   }
