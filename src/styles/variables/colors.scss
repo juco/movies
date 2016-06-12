@@ -1,5 +1,9 @@
+/* Primary */
 $color-primary: #F5F5F5;
+$color-primary-lighter: lighten($color-primary, 20);
+$color-primary-darker: darken($color-primary, 20);
 
+/* Background */
 $color-background: #1C1C1C;
 
 @mixin transparent($transparency) {

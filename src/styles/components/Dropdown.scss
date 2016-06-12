@@ -3,8 +3,8 @@
 
 .dropdown {
   .dropdown-toggle {
-    background-color: #fff;
-    color: #333;
+    background-color: $color-primary-lighter;
+    color: $color-background;
     padding: 6px 12px;
     border: 1px solid transparent;
     border-radius: $size-xs;
@@ -21,11 +21,11 @@
     position: absolute;
     list-style: none;
     width: 150px;
-    background-color: #fff;
+    background-color: $color-primary-lighter;
     padding: $size-sm;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: $size-xs;
-    background-color: white;
+    background-color: $color-primary-lighter;
     margin-top: 0;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
     z-index: 9;
@@ -46,7 +46,7 @@
         width: 100%;
         line-height: 1.4;
         text-decoration: none;
-        color: #333;
+        color: $color-background;
         padding: $size-xs;
       }
     }

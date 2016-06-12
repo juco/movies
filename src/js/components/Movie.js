@@ -19,6 +19,11 @@ class Movie extends Component {
               <span className="digit">{this.props.rating}</span>
               <span className="star">&nbsp; &#9733;</span>
             </p>
+            <a
+              href={`http://imdb.com/${this.props.href}`}
+              target="_blank">
+              view on imdb
+            </a>
           </div>
         </div>
         <Rating stars={rating} />
